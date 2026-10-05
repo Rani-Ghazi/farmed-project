@@ -50,4 +50,8 @@ export const portfolioQuery = queryOptions({
   },
 });
 
-export type ProjectCardData = Awaited<ReturnType<typeof publicProjectsQuery.queryFn & {}>>[number];
+export type ProjectCardData = {
+  id: string; slug: string; title: string; project_type: string; state: string | null; locality: string | null;
+  village: string | null; short_description: string | null; estimated_cost: number | null; currency: string;
+  beneficiaries: number | null; status: string; cover_image: string | null; is_featured: boolean; project_date: string | null;
+};
