@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { ClipboardList, Droplets, Hammer, HeartHandshake, SearchCheck, Snowflake, Sun, Wrench, Camera } from "lucide-react";
+import { ClipboardList, Hammer, HeartHandshake, SearchCheck, Camera } from "lucide-react";
+import { serviceIcon } from "@/lib/icons";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
 import { SiteLayout } from "@/components/site/SiteLayout";
@@ -24,13 +25,6 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-export const serviceIcon: Record<string, typeof Sun> = {
-  cooler: Snowflake,
-  well_drilling: Droplets,
-  solar: Sun,
-  well_maintenance: Wrench,
-  other: Hammer,
-};
 
 const STEPS = [
   { icon: ClipboardList, t: "تقديم الطلب", d: "تقدّم الجهة المستفيدة طلب مشروع مع تفاصيل الاحتياج والموقع." },
