@@ -25,6 +25,8 @@ import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminProjectsRouteImport } from './routes/_authenticated/admin.projects'
 import { Route as AuthenticatedAdminRequestsRouteImport } from './routes/_authenticated/admin.requests'
+import { Route as AuthenticatedAdminServicesRouteImport } from './routes/_authenticated/admin.services'
+import { Route as AuthenticatedAdminProjectsIdRouteImport } from './routes/_authenticated/admin.projects.$id'
 import { Route as AuthenticatedAdminRequestsIdRouteImport } from './routes/_authenticated/admin.requests.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -108,6 +110,18 @@ const AuthenticatedAdminRequestsRoute =
     path: '/requests',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminServicesRoute =
+  AuthenticatedAdminServicesRouteImport.update({
+    id: '/services',
+    path: '/services',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminProjectsIdRoute =
+  AuthenticatedAdminProjectsIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AuthenticatedAdminProjectsRoute,
+  } as any)
 const AuthenticatedAdminRequestsIdRoute =
   AuthenticatedAdminRequestsIdRouteImport.update({
     id: '/$id',
@@ -128,9 +142,11 @@ export interface FileRoutesByFullPath {
   '/portfolio/': typeof PortfolioIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/services/': typeof ServicesIndexRoute
-  '/admin/projects': typeof AuthenticatedAdminProjectsRoute
+  '/admin/projects': typeof AuthenticatedAdminProjectsRouteWithChildren
   '/admin/requests': typeof AuthenticatedAdminRequestsRouteWithChildren
+  '/admin/services': typeof AuthenticatedAdminServicesRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/projects/$id': typeof AuthenticatedAdminProjectsIdRoute
   '/admin/requests/$id': typeof AuthenticatedAdminRequestsIdRoute
 }
 export interface FileRoutesByTo {
@@ -145,9 +161,11 @@ export interface FileRoutesByTo {
   '/portfolio': typeof PortfolioIndexRoute
   '/projects': typeof ProjectsIndexRoute
   '/services': typeof ServicesIndexRoute
-  '/admin/projects': typeof AuthenticatedAdminProjectsRoute
+  '/admin/projects': typeof AuthenticatedAdminProjectsRouteWithChildren
   '/admin/requests': typeof AuthenticatedAdminRequestsRouteWithChildren
+  '/admin/services': typeof AuthenticatedAdminServicesRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/projects/$id': typeof AuthenticatedAdminProjectsIdRoute
   '/admin/requests/$id': typeof AuthenticatedAdminRequestsIdRoute
 }
 export interface FileRoutesById {
@@ -165,9 +183,11 @@ export interface FileRoutesById {
   '/portfolio/': typeof PortfolioIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/services/': typeof ServicesIndexRoute
-  '/_authenticated/admin/projects': typeof AuthenticatedAdminProjectsRoute
+  '/_authenticated/admin/projects': typeof AuthenticatedAdminProjectsRouteWithChildren
   '/_authenticated/admin/requests': typeof AuthenticatedAdminRequestsRouteWithChildren
+  '/_authenticated/admin/services': typeof AuthenticatedAdminServicesRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/projects/$id': typeof AuthenticatedAdminProjectsIdRoute
   '/_authenticated/admin/requests/$id': typeof AuthenticatedAdminRequestsIdRoute
 }
 export interface FileRouteTypes {
@@ -187,7 +207,9 @@ export interface FileRouteTypes {
     | '/services/'
     | '/admin/projects'
     | '/admin/requests'
+    | '/admin/services'
     | '/admin/'
+    | '/admin/projects/$id'
     | '/admin/requests/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -204,7 +226,9 @@ export interface FileRouteTypes {
     | '/services'
     | '/admin/projects'
     | '/admin/requests'
+    | '/admin/services'
     | '/admin'
+    | '/admin/projects/$id'
     | '/admin/requests/$id'
   id:
     | '__root__'
@@ -223,7 +247,9 @@ export interface FileRouteTypes {
     | '/services/'
     | '/_authenticated/admin/projects'
     | '/_authenticated/admin/requests'
+    | '/_authenticated/admin/services'
     | '/_authenticated/admin/'
+    | '/_authenticated/admin/projects/$id'
     | '/_authenticated/admin/requests/$id'
   fileRoutesById: FileRoutesById
 }
@@ -356,6 +382,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRequestsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/services': {
+      id: '/_authenticated/admin/services'
+      path: '/services'
+      fullPath: '/admin/services'
+      preLoaderRoute: typeof AuthenticatedAdminServicesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/projects/$id': {
+      id: '/_authenticated/admin/projects/$id'
+      path: '/$id'
+      fullPath: '/admin/projects/$id'
+      preLoaderRoute: typeof AuthenticatedAdminProjectsIdRouteImport
+      parentRoute: typeof AuthenticatedAdminProjectsRoute
+    }
     '/_authenticated/admin/requests/$id': {
       id: '/_authenticated/admin/requests/$id'
       path: '/$id'
@@ -365,6 +405,20 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface AuthenticatedAdminProjectsRouteChildren {
+  AuthenticatedAdminProjectsIdRoute: typeof AuthenticatedAdminProjectsIdRoute
+}
+
+const AuthenticatedAdminProjectsRouteChildren: AuthenticatedAdminProjectsRouteChildren =
+  {
+    AuthenticatedAdminProjectsIdRoute: AuthenticatedAdminProjectsIdRoute,
+  }
+
+const AuthenticatedAdminProjectsRouteWithChildren =
+  AuthenticatedAdminProjectsRoute._addFileChildren(
+    AuthenticatedAdminProjectsRouteChildren,
+  )
 
 interface AuthenticatedAdminRequestsRouteChildren {
   AuthenticatedAdminRequestsIdRoute: typeof AuthenticatedAdminRequestsIdRoute
@@ -381,14 +435,16 @@ const AuthenticatedAdminRequestsRouteWithChildren =
   )
 
 interface AuthenticatedAdminRouteChildren {
-  AuthenticatedAdminProjectsRoute: typeof AuthenticatedAdminProjectsRoute
+  AuthenticatedAdminProjectsRoute: typeof AuthenticatedAdminProjectsRouteWithChildren
   AuthenticatedAdminRequestsRoute: typeof AuthenticatedAdminRequestsRouteWithChildren
+  AuthenticatedAdminServicesRoute: typeof AuthenticatedAdminServicesRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
-  AuthenticatedAdminProjectsRoute: AuthenticatedAdminProjectsRoute,
+  AuthenticatedAdminProjectsRoute: AuthenticatedAdminProjectsRouteWithChildren,
   AuthenticatedAdminRequestsRoute: AuthenticatedAdminRequestsRouteWithChildren,
+  AuthenticatedAdminServicesRoute: AuthenticatedAdminServicesRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
