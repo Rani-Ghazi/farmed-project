@@ -64,6 +64,11 @@ function Auth() {
               {busy && <Loader2 className="h-4 w-4 animate-spin" />} دخول
             </Button>
           </form>
+          <div className="mt-6 rounded-md border border-dashed bg-muted/50 p-4 text-sm">
+            <p className="font-semibold">بيانات دخول الأدمن:</p>
+            <p className="mt-1 text-muted-foreground">البريد الإلكتروني: <span dir="ltr" className="font-mono font-medium text-foreground">admin@farmed.sd</span></p>
+            <p className="text-muted-foreground">كلمة المرور: <span dir="ltr" className="font-mono font-medium text-foreground">Farmed@2026</span></p>
+          </div>
         </div>
         <Button asChild variant="link" className="mt-4"><Link to="/">العودة للموقع</Link></Button>
       </div>
