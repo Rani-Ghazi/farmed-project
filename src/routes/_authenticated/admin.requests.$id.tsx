@@ -43,7 +43,7 @@ function RequestDetail() {
 
   async function save(patch: Record<string, unknown>, msg: string) {
     setBusy(true);
-    const { error } = await supabase.from("project_requests").update(patch).eq("id", r!.id);
+    const { error } = await supabase.from("project_requests").update(patch as never).eq("id", r!.id);
     setBusy(false);
     if (error) { toast.error("تعذّر الحفظ"); return; }
     toast.success(msg);

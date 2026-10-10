@@ -32,7 +32,7 @@ function Settings() {
   useEffect(() => {
     if (q.data) {
       const f: Record<string, string> = {};
-      FIELDS.forEach(({ key }) => (f[key] = (q.data as Record<string, string | null>)[key] ?? ""));
+      FIELDS.forEach(({ key }) => (f[key] = (q.data as unknown as Record<string, string | null>)[key] ?? ""));
       setForm(f);
     }
   }, [q.data]);
@@ -41,7 +41,7 @@ function Settings() {
     setBusy(true);
     const payload: Record<string, string | null> = {};
     FIELDS.forEach(({ key }) => (payload[key] = form[key]?.trim() || null));
-    const { error } = await supabase.from("site_settings").update(payload).eq("id", 1);
+    const { error } = await supabase.from("site_settings").update(payload as never).eq("id", 1);
     setBusy(false);
     if (error) { toast.error("تعذّر الحفظ"); return; }
     toast.success("تم حفظ الإعدادات");

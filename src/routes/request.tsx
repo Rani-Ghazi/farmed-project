@@ -39,7 +39,7 @@ const schema = z.object({
   project_type: z.string().min(1, "نوع المشروع مطلوب"),
   need_description: z.string().trim().min(10, "اشرح الاحتياج ببعض التفصيل (10 أحرف على الأقل)").max(5000),
   need_reason: z.string().trim().min(10, "اشرح سبب الحاجة ببعض التفصيل").max(5000),
-  expected_beneficiaries: z.coerce.number({ error: "أدخل رقماً" }).int("أدخل عدداً صحيحاً").min(1, "عدد المستفيدين مطلوب").max(10000000),
+  expected_beneficiaries: z.coerce.number({ invalid_type_error: "أدخل رقماً" }).int("أدخل عدداً صحيحاً").min(1, "عدد المستفيدين مطلوب").max(10000000),
   extra_notes: z.string().trim().max(5000),
 });
 
