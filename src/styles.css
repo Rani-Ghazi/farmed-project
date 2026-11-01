@@ -55,17 +55,17 @@
   --card-foreground: oklch(0.22 0.03 230);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.22 0.03 230);
-  /* deep water teal */
-  --primary: oklch(0.42 0.085 220);
+  /* brand blue (from logo) */
+  --primary: oklch(0.5 0.1 228);
   --primary-foreground: oklch(0.98 0.01 85);
-  --primary-soft: oklch(0.93 0.03 215);
+  --primary-soft: oklch(0.93 0.03 220);
   --secondary: oklch(0.95 0.015 85);
   --secondary-foreground: oklch(0.25 0.03 230);
   --muted: oklch(0.95 0.012 85);
   --muted-foreground: oklch(0.5 0.025 230);
-  /* sun / ochre */
-  --accent: oklch(0.74 0.15 70);
-  --accent-foreground: oklch(0.2 0.03 60);
+  /* brand green (from logo) */
+  --accent: oklch(0.72 0.16 128);
+  --accent-foreground: oklch(0.2 0.04 130);
   --sand: oklch(0.92 0.035 80);
   --ink: oklch(0.2 0.035 230);
   --ink-foreground: oklch(0.95 0.012 85);
@@ -75,15 +75,15 @@
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(0.89 0.015 85);
   --input: oklch(0.87 0.018 85);
-  --ring: oklch(0.42 0.085 220);
+  --ring: oklch(0.5 0.1 228);
   --sidebar: oklch(0.2 0.035 230);
   --sidebar-foreground: oklch(0.92 0.012 85);
-  --sidebar-primary: oklch(0.74 0.15 70);
-  --sidebar-primary-foreground: oklch(0.2 0.03 60);
+  --sidebar-primary: oklch(0.72 0.16 128);
+  --sidebar-primary-foreground: oklch(0.2 0.04 130);
   --sidebar-accent: oklch(0.28 0.04 230);
   --sidebar-accent-foreground: oklch(0.98 0.01 85);
   --sidebar-border: oklch(0.3 0.03 230);
-  --sidebar-ring: oklch(0.74 0.15 70);
+  --sidebar-ring: oklch(0.72 0.16 128);
   --shadow-card: 0 1px 2px oklch(0.2 0.03 230 / 6%), 0 8px 24px -12px oklch(0.2 0.03 230 / 18%);
   --gradient-hero: linear-gradient(270deg, oklch(0.2 0.035 230 / 92%) 0%, oklch(0.2 0.035 230 / 70%) 45%, oklch(0.2 0.035 230 / 15%) 100%);
 }
@@ -104,8 +104,8 @@
 @utility bg-hero-overlay { background-image: var(--gradient-hero); }
 @utility blueprint {
   background-image:
-    linear-gradient(to right, oklch(0.42 0.085 220 / 7%) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(0.42 0.085 220 / 7%) 1px, transparent 1px);
+    linear-gradient(to right, oklch(0.5 0.1 228 / 7%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.5 0.1 228 / 7%) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 @utility eyebrow {

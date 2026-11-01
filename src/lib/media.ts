@@ -19,10 +19,44 @@ function ext(file: File) {
   return e && e.length <= 5 ? e.toLowerCase() : "bin";
 }
 
-/** Upload to a bucket; returns storage path. */
+const MAX_IMAGE_DIM = 1920;
+const WEBP_QUALITY = 0.82;
+
+/**
+ * Compress an image before upload: resize to a sensible max dimension and
+ * convert to WebP. Returns the original file if compression fails or the
+ * result would be larger (e.g. already-optimized small images).
+ */
+export async function compressImage(file: File): Promise<{ blob: Blob; ext: string }> {
+  if (!IMAGE_TYPES.includes(file.type) || file.type === "image/webp") {
+    return { blob: file, ext: ext(file) };
+  }
+  try {
+    const bitmap = await createImageBitmap(file);
+    const scale = Math.min(1, MAX_IMAGE_DIM / Math.max(bitmap.width, bitmap.height));
+    const w = Math.round(bitmap.width * scale);
+    const h = Math.round(bitmap.height * scale);
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("no canvas");
+    ctx.drawImage(bitmap, 0, 0, w, h);
+    bitmap.close();
+    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/webp", WEBP_QUALITY));
+    if (!blob || blob.size >= file.size) return { blob: file, ext: ext(file) };
+    return { blob, ext: "webp" };
+  } catch {
+    return { blob: file, ext: ext(file) };
+  }
+}
+
+/** Upload to a bucket; returns storage path. Images are compressed to WebP first. */
 export async function uploadFile(bucket: "media" | "request-attachments", folder: string, file: File) {
-  const path = `${folder}/${crypto.randomUUID()}.${ext(file)}`;
-  const { error } = await supabase.storage.from(bucket).upload(path, file, { contentType: file.type });
+  const isImage = IMAGE_TYPES.includes(file.type);
+  const { blob, ext: e } = isImage ? await compressImage(file) : { blob: file as Blob, ext: ext(file) };
+  const path = `${folder}/${crypto.randomUUID()}.${e}`;
+  const { error } = await supabase.storage.from(bucket).upload(path, blob, { contentType: isImage ? blob.type : file.type });
   if (error) throw error;
   return path;
 }
