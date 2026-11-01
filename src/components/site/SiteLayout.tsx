@@ -1,9 +1,10 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Droplets, Facebook, Instagram, Linkedin, Mail, MapPin, Menu, MessageCircle, Phone, Twitter, X, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Menu, MessageCircle, Phone, Twitter, X, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { settingsQuery } from "@/lib/queries";
+import logoAsset from "@/assets/farmed-logo.png.asset.json";
 
 const NAV = [
   { to: "/", label: "الرئيسية" },
@@ -17,16 +18,12 @@ const NAV = [
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <Link to="/" className="flex items-center gap-2.5">
-      <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground">
-        <Droplets className="h-5 w-5" />
-      </span>
-      <span className="leading-tight">
-        <span className={`block font-display text-lg font-bold ${light ? "text-ink-foreground" : "text-foreground"}`}>فارمد للهندسة</span>
-        <span className={`block text-[11px] tracking-wider ${light ? "text-ink-foreground/60" : "text-muted-foreground"}`} dir="ltr">
-          FARMED ENGINEERING
-        </span>
-      </span>
+    <Link to="/" className="flex items-center gap-2.5" aria-label="فارمد الهندسية — الرئيسية">
+      <img
+        src={logoAsset.url}
+        alt="فارمد الهندسية — Farmed Engineering"
+        className={`h-11 w-auto rounded-md ${light ? "bg-white p-1" : ""}`}
+      />
     </Link>
   );
 }
