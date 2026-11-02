@@ -119,6 +119,9 @@ function PortfolioEditor() {
   async function remove() {
     const { error } = await supabase.from("portfolio_items").delete().eq("id", id);
     if (error) { toast.error("تعذّر الحذف"); return; }
+    // Clean up storage files (media rows are removed by the DB cascade)
+    const files = [cover, ...media.before, ...media.after, ...media.video];
+    await Promise.all(files.map((u) => removeFile("media", u)));
     toast.success("تم الحذف");
     navigate({ to: "/admin/portfolio" });
   }

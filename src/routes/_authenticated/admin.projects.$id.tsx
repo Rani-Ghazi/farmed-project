@@ -128,6 +128,8 @@ function ProjectEditor() {
   async function remove() {
     const { error } = await supabase.from("projects").delete().eq("id", id);
     if (error) { toast.error("تعذّر الحذف"); return; }
+    // Clean up storage files (media rows are removed by the DB cascade)
+    await Promise.all([removeFile("media", cover), ...images.map((u) => removeFile("media", u)), ...videos.map((u) => removeFile("media", u))]);
     toast.success("تم حذف المشروع");
     navigate({ to: "/admin/projects" });
   }
