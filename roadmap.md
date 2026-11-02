@@ -1,12 +1,10 @@
 # Roadmap — Farmed Engineering enhancement pass
 
-- [ ] Fix admin: "مشروع جديد" button (admin/projects/new form)
-- [ ] Fix admin: "مشروع مكتمل جديد" button (admin/portfolio/new form)
-- [ ] Fix admin: opening a project request from the list does nothing
-- [ ] Adopt uploaded logo (header/footer/favicon), brand colors aligned to logo
-- [ ] Arabic font upgrade (IBM Plex Sans Arabic / Alexandria) + RTL polish
-- [ ] UI/UX polish: buttons, cards, tables, states, hover effects
-- [ ] Storage optimization: client-side image compression/WebP, lazy loading, file validation
-- [ ] Full audit of all pages/links/buttons
-- [ ] End-to-end testing (admin CRUD, request flow, public pages, mobile)
-- [ ] Final report to user
+- [x] Fix admin: "مشروع جديد" button (root cause: list routes missing <Outlet />)
+- [x] Fix admin: "مشروع مكتمل جديد" button (same root cause)
+- [x] Fix admin: opening a project request (same root cause + whole row now clickable)
+- [x] Adopt uploaded logo (header/footer/favicon), brand colors aligned to logo (blue/green)
+- [x] Arabic font (IBM Plex Sans Arabic + Readex Pro) + line-height polish
+- [x] Storage optimization: client-side WebP compression (max 1920px, q0.82), lazy loading, delete files with project
+- [x] Full audit + E2E tests (login, CRUD, request flow, public pages, mobile) — all pass
+- [x] Final report to user
