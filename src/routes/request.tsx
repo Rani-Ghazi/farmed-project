@@ -13,6 +13,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { DOC_TYPES, IMAGE_TYPES, MAX_DOC_MB, MAX_IMAGE_MB, MAX_VIDEO_MB, VIDEO_TYPES, uploadFile } from "@/lib/media";
 import { ORG_TYPES, PROJECT_TYPES, SUDAN_STATES } from "@/lib/constants";
+import { ServiceQuestions } from "@/components/site/ServiceQuestions";
+import { pickAnswers, SERVICE_QUESTIONS, validateAnswers, type Answers } from "@/lib/service-questions";
 
 export const Route = createFileRoute("/request")({
   head: () => ({
@@ -54,6 +56,8 @@ function RequestPage() {
   const [video, setVideo] = useState<File[]>([]);
   const [docs, setDocs] = useState<File[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [answers, setAnswers] = useState<Answers>({});
+  const [qFiles, setQFiles] = useState<Record<string, File[]>>({});
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -61,11 +65,12 @@ function RequestPage() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     const parsed = schema.safeParse(form);
-    if (!parsed.success) {
-      const errs: Record<string, string> = {};
-      parsed.error.issues.forEach((i) => (errs[String(i.path[0])] = i.message));
+    const errs: Record<string, string> = {};
+    if (!parsed.success) parsed.error.issues.forEach((i) => (errs[String(i.path[0])] = i.message));
+    Object.assign(errs, validateAnswers(form.project_type, answers));
+    if (!parsed.success || Object.keys(errs).length) {
       setErrors(errs);
-      document.querySelector("[data-error]")?.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(() => document.querySelector("[data-error]")?.scrollIntoView({ behavior: "smooth", block: "center" }), 0);
       return;
     }
     setErrors({});
@@ -75,13 +80,18 @@ function RequestPage() {
       const site_images = await Promise.all(images.map((f) => uploadFile("request-attachments", "requests", f)));
       const video_path = video[0] ? await uploadFile("request-attachments", "requests", video[0]) : null;
       const documents = await Promise.all(docs.map((f) => uploadFile("request-attachments", "requests", f)));
+      const service_answers = pickAnswers(d.project_type, answers);
+      for (const q of SERVICE_QUESTIONS[d.project_type] ?? []) {
+        if (q.type === "images" && qFiles[q.key]?.length)
+          service_answers[q.key] = await Promise.all(qFiles[q.key].map((f) => uploadFile("request-attachments", "requests", f)));
+      }
       const { error } = await supabase.from("project_requests").insert({
         org_name: d.org_name, contact_name: d.contact_name, phone: d.phone, email: d.email || null,
         org_type: d.org_type, state: d.state, locality: d.locality, village: d.village,
         geo_location: d.geo_location || null, project_type: d.project_type as never,
         need_description: d.need_description, need_reason: d.need_reason,
         expected_beneficiaries: d.expected_beneficiaries, extra_notes: d.extra_notes || null,
-        site_images, video_path, documents,
+        site_images, video_path, documents, service_answers,
       });
       if (error) throw error;
       setDone(true);
@@ -161,6 +171,15 @@ function RequestPage() {
             <Field label="سبب الحاجة للمشروع *" error={errors.need_reason}><Textarea rows={4} value={form.need_reason} onChange={set("need_reason")} />{err("need_reason")}</Field>
             <Field label="عدد المستفيدين المتوقع *" error={errors.expected_beneficiaries}><Input type="number" min={1} dir="ltr" value={form.expected_beneficiaries} onChange={set("expected_beneficiaries")} />{err("expected_beneficiaries")}</Field>
           </div>
+
+          <ServiceQuestions
+            service={form.project_type}
+            answers={answers}
+            onChange={(k, v) => setAnswers((a) => ({ ...a, [k]: v }))}
+            files={qFiles}
+            onFiles={(k, f) => setQFiles((s) => ({ ...s, [k]: f }))}
+            errors={errors}
+          />
 
           <div className="space-y-5 rounded-lg border bg-card p-6 shadow-card">
             <h2 className="text-lg font-bold">المرفقات</h2>

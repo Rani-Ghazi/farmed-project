@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { formatDate, formatNumber, projectTypeLabel, REQUEST_STATUSES, requestStatusLabel, slugify } from "@/lib/constants";
 import type { RequestStatus } from "@/lib/constants";
+import { formatAnswer, SERVICE_QUESTIONS, type Answers } from "@/lib/service-questions";
 
 export const Route = createFileRoute("/_authenticated/admin/requests/$id")({ component: RequestDetail });
 
@@ -108,6 +109,29 @@ function RequestDetail() {
             <p className="mt-2 whitespace-pre-line text-sm leading-7 text-muted-foreground">{r.need_reason}</p>
             {r.extra_notes && <><h3 className="mt-6 font-semibold">ملاحظات إضافية</h3><p className="mt-2 whitespace-pre-line text-sm leading-7 text-muted-foreground">{r.extra_notes}</p></>}
           </section>
+
+          {(SERVICE_QUESTIONS[r.project_type]?.length ?? 0) > 0 && (
+            <section className="rounded-lg border bg-card p-6 shadow-card">
+              <h2 className="font-bold">إجابات خاصة بخدمة: {projectTypeLabel(r.project_type)}</h2>
+              <dl className="mt-4 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
+                {SERVICE_QUESTIONS[r.project_type].filter((q) => q.type !== "images").map((q) => (
+                  <Item key={q.key} k={q.label} v={formatAnswer(q, (r.service_answers as Answers | null)?.[q.key] ?? null)} />
+                ))}
+              </dl>
+              {SERVICE_QUESTIONS[r.project_type].filter((q) => q.type === "images").map((q) => {
+                const imgs = (r.service_answers as Answers | null)?.[q.key];
+                return Array.isArray(imgs) && imgs.length ? (
+                  <div key={q.key} className="mt-5">
+                    <h3 className="text-sm font-semibold">{q.label}</h3>
+                    <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                      {imgs.map((p) => <MediaImage key={p} path={p} bucket="request-attachments" alt={q.label} className="aspect-[4/3] w-full rounded-md" />)}
+                    </div>
+                  </div>
+                ) : null;
+              })}
+            </section>
+          )}
+
 
           {(r.site_images.length > 0 || r.video_path || r.documents.length > 0) && (
             <section className="rounded-lg border bg-card p-6 shadow-card">

@@ -5,10 +5,13 @@ export type RequestStatus = Database["public"]["Enums"]["request_status"];
 export type DonorStatus = Database["public"]["Enums"]["donor_status"];
 
 export const PROJECT_TYPES: { value: ProjectType; label: string }[] = [
-  { value: "cooler", label: "مبرد حراري" },
+  { value: "cooler", label: "المبردات الحرارية" },
+  { value: "solar", label: "الطاقة الشمسية" },
+  { value: "water_station", label: "المحطات المائية الكاملة" },
+  { value: "well_maintenance", label: "صيانة الآبار" },
+  { value: "water_network", label: "شبكات المياه" },
+  { value: "school_maintenance", label: "صيانة المدارس" },
   { value: "well_drilling", label: "حفر بئر" },
-  { value: "solar", label: "طاقة شمسية" },
-  { value: "well_maintenance", label: "صيانة بئر" },
   { value: "other", label: "أخرى" },
 ];
 export const projectTypeLabel = (v?: string | null) =>

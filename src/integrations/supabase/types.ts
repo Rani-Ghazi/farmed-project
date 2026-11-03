@@ -217,6 +217,7 @@ export type Database = {
           org_type: string
           phone: string
           project_type: Database["public"]["Enums"]["project_type"]
+          service_answers: Json
           site_images: string[]
           state: string
           status: Database["public"]["Enums"]["request_status"]
@@ -241,6 +242,7 @@ export type Database = {
           org_type: string
           phone: string
           project_type: Database["public"]["Enums"]["project_type"]
+          service_answers?: Json
           site_images?: string[]
           state: string
           status?: Database["public"]["Enums"]["request_status"]
@@ -265,6 +267,7 @@ export type Database = {
           org_type?: string
           phone?: string
           project_type?: Database["public"]["Enums"]["project_type"]
+          service_answers?: Json
           site_images?: string[]
           state?: string
           status?: Database["public"]["Enums"]["request_status"]
@@ -506,6 +509,9 @@ export type Database = {
         | "solar"
         | "well_maintenance"
         | "other"
+        | "water_station"
+        | "water_network"
+        | "school_maintenance"
       request_status:
         | "new"
         | "reviewing"
@@ -650,6 +656,9 @@ export const Constants = {
         "solar",
         "well_maintenance",
         "other",
+        "water_station",
+        "water_network",
+        "school_maintenance",
       ],
       request_status: [
         "new",
