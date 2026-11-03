@@ -16,10 +16,10 @@ import { formatDate, projectTypeLabel } from "@/lib/constants";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "فارمد للهندسة — مشاريع المياه والطاقة في السودان" },
-      { name: "description", content: "فارمد للهندسة تنفّذ مشاريع المبردات الحرارية وحفر الآبار والطاقة الشمسية، وتربط المجتمعات المحتاجة بالداعمين." },
-      { property: "og:title", content: "فارمد للهندسة — مشاريع المياه والطاقة في السودان" },
-      { property: "og:description", content: "اطلب مشروعاً لمجتمعك أو ادعم مشروعاً قائماً مع فارمد للهندسة." },
+      { title: "فارمد الهندسية — مشاريع المياه والطاقة في السودان" },
+      { name: "description", content: "فارمد الهندسية تنفّذ مشاريع المبردات الحرارية وحفر الآبار والطاقة الشمسية، وتربط المجتمعات المحتاجة بالداعمين." },
+      { property: "og:title", content: "فارمد الهندسية — مشاريع المياه والطاقة في السودان" },
+      { property: "og:description", content: "اطلب مشروعاً لمجتمعك أو ادعم مشروعاً قائماً مع فارمد الهندسية." },
     ],
   }),
   component: Home,
@@ -54,7 +54,7 @@ function Home() {
               <span className="text-accent">لكل مجتمع في السودان</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-ink-foreground/80">
-              فارمد للهندسة تصمّم وتنفّذ مشاريع المبردات الحرارية وحفر الآبار وأنظمة الطاقة الشمسية، وتربط الجهات المحتاجة بالداعمين عبر منصة واضحة وشفافة.
+              فارمد الهندسية تصمّم وتنفّذ مشاريع المبردات الحرارية وحفر الآبار وأنظمة الطاقة الشمسية، وتربط الجهات المحتاجة بالداعمين عبر منصة واضحة وشفافة.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" variant="accent"><Link to="/request">اطلب مشروعاً</Link></Button>

@@ -10,9 +10,9 @@ import { Label } from "@/components/ui/label";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "دخول الإدارة — فارمد للهندسة" },
+      { title: "دخول الإدارة — فارمد الهندسية" },
       { name: "robots", content: "noindex" },
-      { name: "description", content: "تسجيل دخول إدارة فارمد للهندسة." },
+      { name: "description", content: "تسجيل دخول إدارة فارمد الهندسية." },
     ],
   }),
   component: Auth,
@@ -43,7 +43,7 @@ function Auth() {
       <div className="container mx-auto flex max-w-md flex-col items-center px-4 py-20">
         <div className="w-full rounded-lg border bg-card p-8 shadow-card">
           <h1 className="text-center text-2xl font-bold">دخول الإدارة</h1>
-          <p className="mt-2 text-center text-sm text-muted-foreground">هذه الصفحة مخصصة لفريق فارمد للهندسة.</p>
+          <p className="mt-2 text-center text-sm text-muted-foreground">هذه الصفحة مخصصة لفريق فارمد الهندسية.</p>
           <form onSubmit={submit} className="mt-8 space-y-4">
             <div className="space-y-1.5">
               <Label htmlFor="email">البريد الإلكتروني</Label>

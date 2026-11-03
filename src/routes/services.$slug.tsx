@@ -11,9 +11,9 @@ import { PROJECT_CARD_FIELDS, type ProjectCardData } from "@/lib/queries";
 export const Route = createFileRoute("/services/$slug")({
   head: () => ({
     meta: [
-      { title: "تفاصيل الخدمة — فارمد للهندسة" },
-      { name: "description", content: "تفاصيل الخدمة والمشاريع المرتبطة بها لدى فارمد للهندسة." },
-      { property: "og:title", content: "تفاصيل الخدمة — فارمد للهندسة" },
+      { title: "تفاصيل الخدمة — فارمد الهندسية" },
+      { name: "description", content: "تفاصيل الخدمة والمشاريع المرتبطة بها لدى فارمد الهندسية." },
+      { property: "og:title", content: "تفاصيل الخدمة — فارمد الهندسية" },
       { property: "og:description", content: "تعرّف على الخدمة والمشاريع المرتبطة بها." },
     ],
   }),

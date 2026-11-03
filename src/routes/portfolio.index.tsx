@@ -10,9 +10,9 @@ import { formatDate, formatNumber, projectTypeLabel } from "@/lib/constants";
 export const Route = createFileRoute("/portfolio/")({
   head: () => ({
     meta: [
-      { title: "معرض الأعمال — فارمد للهندسة" },
-      { name: "description", content: "مشاريع فارمد للهندسة المكتملة موثقة بالصور قبل وبعد التنفيذ." },
-      { property: "og:title", content: "معرض الأعمال — فارمد للهندسة" },
+      { title: "معرض الأعمال — فارمد الهندسية" },
+      { name: "description", content: "مشاريع فارمد الهندسية المكتملة موثقة بالصور قبل وبعد التنفيذ." },
+      { property: "og:title", content: "معرض الأعمال — فارمد الهندسية" },
       { property: "og:description", content: "شاهد أثر المشاريع المنفذة في المجتمعات." },
     ],
   }),

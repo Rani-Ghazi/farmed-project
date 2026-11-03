@@ -13,10 +13,10 @@ import { formatDate, formatMoney, formatNumber, projectTypeLabel, requestStatusL
 export const Route = createFileRoute("/projects/$slug")({
   head: () => ({
     meta: [
-      { title: "تفاصيل المشروع — فارمد للهندسة" },
-      { name: "description", content: "تفاصيل المشروع وتكلفته وعدد المستفيدين وكيفية دعمه مع فارمد للهندسة." },
-      { property: "og:title", content: "تفاصيل المشروع — فارمد للهندسة" },
-      { property: "og:description", content: "ادعم هذا المشروع مع فارمد للهندسة." },
+      { title: "تفاصيل المشروع — فارمد الهندسية" },
+      { name: "description", content: "تفاصيل المشروع وتكلفته وعدد المستفيدين وكيفية دعمه مع فارمد الهندسية." },
+      { property: "og:title", content: "تفاصيل المشروع — فارمد الهندسية" },
+      { property: "og:description", content: "ادعم هذا المشروع مع فارمد الهندسية." },
     ],
   }),
   component: ProjectDetail,
@@ -114,7 +114,7 @@ function ProjectDetail() {
             <div className="mt-4 flex gap-3 rounded-lg border bg-secondary p-5 text-sm">
               <Building2 className="h-5 w-5 shrink-0 text-primary" />
               <p className="leading-6 text-muted-foreground">
-                يُدار هذا المشروع ويُنفّذ بواسطة <b className="text-foreground">فارمد للهندسة</b>، مع توثيق كامل للمراحل. <Link to="/contact" className="text-primary underline">تواصل معنا</Link>
+                يُدار هذا المشروع ويُنفّذ بواسطة <b className="text-foreground">فارمد الهندسية</b>، مع توثيق كامل للمراحل. <Link to="/contact" className="text-primary underline">تواصل معنا</Link>
               </p>
             </div>
           </aside>
