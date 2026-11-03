@@ -8,10 +8,10 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "من نحن — فارمد للهندسة" },
-      { name: "description", content: "تعرّف على فارمد للهندسة: رسالتنا ورؤيتنا وما نقوم به في مشاريع المياه والطاقة في السودان." },
-      { property: "og:title", content: "من نحن — فارمد للهندسة" },
-      { property: "og:description", content: "رسالة ورؤية فارمد للهندسة ولماذا تعمل معنا الجهات والداعمون." },
+      { title: "من نحن — فارمد الهندسية" },
+      { name: "description", content: "تعرّف على فارمد الهندسية: رسالتنا ورؤيتنا وما نقوم به في مشاريع المياه والطاقة في السودان." },
+      { property: "og:title", content: "من نحن — فارمد الهندسية" },
+      { property: "og:description", content: "رسالة ورؤية فارمد الهندسية ولماذا تعمل معنا الجهات والداعمون." },
     ],
   }),
   component: About,
@@ -27,12 +27,12 @@ const WHY = [
 function About() {
   return (
     <SiteLayout>
-      <PageHeader eyebrow="من نحن" title="فارمد للهندسة" description="شركة هندسية سودانية تعمل في تنفيذ مشاريع المياه والطاقة والمشاريع التنموية والإنسانية." />
+      <PageHeader eyebrow="من نحن" title="فارمد الهندسية" description="شركة هندسية سودانية تعمل في تنفيذ مشاريع المياه والطاقة والمشاريع التنموية والإنسانية." />
       <section className="container mx-auto grid max-w-6xl items-start gap-12 px-4 py-16 md:grid-cols-2">
         <div>
           <SectionHeading title="نبذة عن الشركة" />
           <p className="mt-4 leading-8 text-muted-foreground">
-            تأسست فارمد للهندسة لتكون حلقة وصل بين المجتمعات التي تحتاج إلى خدمات أساسية كالمياه والطاقة، والداعمين الراغبين في إحداث أثر حقيقي. نتولى دراسة الطلبات وتصميم الحلول وتنفيذها ومتابعتها بعد التسليم.
+            تأسست فارمد الهندسية لتكون حلقة وصل بين المجتمعات التي تحتاج إلى خدمات أساسية كالمياه والطاقة، والداعمين الراغبين في إحداث أثر حقيقي. نتولى دراسة الطلبات وتصميم الحلول وتنفيذها ومتابعتها بعد التسليم.
           </p>
           <PlaceholderNote>نص توضيحي — يُستبدل بالنبذة الرسمية للشركة</PlaceholderNote>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">

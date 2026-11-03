@@ -19,9 +19,9 @@ import { pickAnswers, SERVICE_QUESTIONS, validateAnswers, type Answers } from "@
 export const Route = createFileRoute("/request")({
   head: () => ({
     meta: [
-      { title: "تقديم طلب مشروع — فارمد للهندسة" },
-      { name: "description", content: "قدّم طلب مشروع مياه أو طاقة لمدرستك أو مجتمعك أو منظمتك وسيراجعه فريق فارمد للهندسة." },
-      { property: "og:title", content: "تقديم طلب مشروع — فارمد للهندسة" },
+      { title: "تقديم طلب مشروع — فارمد الهندسية" },
+      { name: "description", content: "قدّم طلب مشروع مياه أو طاقة لمدرستك أو مجتمعك أو منظمتك وسيراجعه فريق فارمد الهندسية." },
+      { property: "og:title", content: "تقديم طلب مشروع — فارمد الهندسية" },
       { property: "og:description", content: "قدّم طلبك وسيتواصل معك فريقنا بعد المراجعة." },
     ],
   }),

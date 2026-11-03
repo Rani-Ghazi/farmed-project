@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "تواصل معنا — فارمد للهندسة" },
-      { name: "description", content: "أرقام الهاتف وواتساب والبريد الإلكتروني وعنوان فارمد للهندسة." },
-      { property: "og:title", content: "تواصل معنا — فارمد للهندسة" },
-      { property: "og:description", content: "تواصل مع فريق فارمد للهندسة بخصوص طلب أو دعم مشروع." },
+      { title: "تواصل معنا — فارمد الهندسية" },
+      { name: "description", content: "أرقام الهاتف وواتساب والبريد الإلكتروني وعنوان فارمد الهندسية." },
+      { property: "og:title", content: "تواصل معنا — فارمد الهندسية" },
+      { property: "og:description", content: "تواصل مع فريق فارمد الهندسية بخصوص طلب أو دعم مشروع." },
     ],
   }),
   component: () => (

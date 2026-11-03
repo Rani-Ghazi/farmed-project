@@ -80,8 +80,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "فارمد للهندسة | Farmed Engineering" },
-      { name: "description", content: "منصة فارمد للهندسة لمشاريع المياه والطاقة في السودان." },
+      { title: "فارمد الهندسية | Farmed Engineering" },
+      { name: "description", content: "منصة فارمد الهندسية لمشاريع المياه والطاقة في السودان." },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "ar_SD" },
       { name: "twitter:card", content: "summary_large_image" },

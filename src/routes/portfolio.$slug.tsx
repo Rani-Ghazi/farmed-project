@@ -11,9 +11,9 @@ import { formatDate, formatMoney, formatNumber, projectTypeLabel } from "@/lib/c
 export const Route = createFileRoute("/portfolio/$slug")({
   head: () => ({
     meta: [
-      { title: "مشروع مكتمل — فارمد للهندسة" },
-      { name: "description", content: "توثيق مشروع مكتمل من مشاريع فارمد للهندسة بالصور قبل وبعد." },
-      { property: "og:title", content: "مشروع مكتمل — فارمد للهندسة" },
+      { title: "مشروع مكتمل — فارمد الهندسية" },
+      { name: "description", content: "توثيق مشروع مكتمل من مشاريع فارمد الهندسية بالصور قبل وبعد." },
+      { property: "og:title", content: "مشروع مكتمل — فارمد الهندسية" },
       { property: "og:description", content: "شاهد أثر المشروع قبل وبعد التنفيذ." },
     ],
   }),

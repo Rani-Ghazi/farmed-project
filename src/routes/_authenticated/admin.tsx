@@ -12,7 +12,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
     meta: [
-      { title: "لوحة التحكم — فارمد للهندسة" },
+      { title: "لوحة التحكم — فارمد الهندسية" },
       { name: "robots", content: "noindex" },
     ],
   }),

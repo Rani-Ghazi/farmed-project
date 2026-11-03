@@ -10,9 +10,9 @@ import { serviceIcon } from "@/lib/icons";
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
-      { title: "خدماتنا — فارمد للهندسة" },
-      { name: "description", content: "المبردات الحرارية، حفر الآبار، الطاقة الشمسية، وصيانة الآبار — خدمات فارمد للهندسة." },
-      { property: "og:title", content: "خدماتنا — فارمد للهندسة" },
+      { title: "خدماتنا — فارمد الهندسية" },
+      { name: "description", content: "المبردات الحرارية، حفر الآبار، الطاقة الشمسية، وصيانة الآبار — خدمات فارمد الهندسية." },
+      { property: "og:title", content: "خدماتنا — فارمد الهندسية" },
       { property: "og:description", content: "حلول هندسية للمياه والطاقة تخدم المجتمعات في السودان." },
     ],
   }),

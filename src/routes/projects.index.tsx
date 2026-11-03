@@ -14,9 +14,9 @@ import { publicProjectsQuery } from "@/lib/queries";
 export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
-      { title: "المشاريع — فارمد للهندسة" },
-      { name: "description", content: "تصفّح مشاريع المياه والطاقة المعتمدة من فارمد للهندسة واختر مشروعاً لدعمه." },
-      { property: "og:title", content: "المشاريع — فارمد للهندسة" },
+      { title: "المشاريع — فارمد الهندسية" },
+      { name: "description", content: "تصفّح مشاريع المياه والطاقة المعتمدة من فارمد الهندسية واختر مشروعاً لدعمه." },
+      { property: "og:title", content: "المشاريع — فارمد الهندسية" },
       { property: "og:description", content: "مشاريع معتمدة تنتظر الدعم في مختلف ولايات السودان." },
     ],
   }),
