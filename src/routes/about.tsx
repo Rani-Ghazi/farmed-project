@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Compass, Eye, ShieldCheck, Target, Users, Wrench } from "lucide-react";
 import aboutImg from "@/assets/about.jpg";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { PageHeader, PlaceholderNote, SectionHeading } from "@/components/site/common";
+import { PageHeader, SectionHeading } from "@/components/site/common";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/about")({
@@ -34,7 +34,6 @@ function About() {
           <p className="mt-4 leading-8 text-muted-foreground">
             تأسست فارمد الهندسية لتكون حلقة وصل بين المجتمعات التي تحتاج إلى خدمات أساسية كالمياه والطاقة، والداعمين الراغبين في إحداث أثر حقيقي. نتولى دراسة الطلبات وتصميم الحلول وتنفيذها ومتابعتها بعد التسليم.
           </p>
-          <PlaceholderNote>نص توضيحي — يُستبدل بالنبذة الرسمية للشركة</PlaceholderNote>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <div className="rounded-lg border bg-card p-5 shadow-card">
               <Target className="h-6 w-6 text-accent" />
