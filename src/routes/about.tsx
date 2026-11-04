@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Compass, Eye, ShieldCheck, Target, Users, Wrench } from "lucide-react";
 import aboutImg from "@/assets/about.jpg";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { PageHeader, PlaceholderNote, SectionHeading } from "@/components/site/common";
+import { PageHeader, SectionHeading } from "@/components/site/common";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/about")({
