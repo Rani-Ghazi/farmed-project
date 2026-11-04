@@ -11,11 +11,11 @@ export function ProjectCard({ p }: { p: ProjectCardData }) {
     <Link
       to="/projects/$slug"
       params={{ slug: p.slug }}
-      className="group flex flex-col overflow-hidden rounded-lg border bg-card shadow-card transition-transform hover:-translate-y-1"
+      className="group flex flex-col overflow-hidden rounded-2xl border bg-card shadow-card lift"
     >
-      <div className="relative">
-        <MediaImage path={p.cover_image} alt={p.title} className="aspect-[4/3] w-full" />
-        <span className="absolute right-3 top-3 rounded bg-ink/85 px-2 py-1 text-xs font-medium text-ink-foreground">
+      <div className="relative overflow-hidden">
+        <MediaImage path={p.cover_image} alt={p.title} className="aspect-[4/3] w-full transition-transform duration-500 group-hover:scale-105" />
+        <span className="absolute right-3 top-3 rounded-full bg-ink/85 px-3 py-1 text-xs font-semibold backdrop-blur text-ink-foreground">
           {projectTypeLabel(p.project_type)}
         </span>
       </div>

@@ -33,8 +33,8 @@ export function ServiceQuestions({ service, answers, onChange, files, onFiles, e
   const qs = SERVICE_QUESTIONS[service];
   if (!qs?.length) return null;
   return (
-    <div className="space-y-4 rounded-lg border border-primary/30 bg-card p-6 shadow-card">
-      <h2 className="text-lg font-bold">أسئلة خاصة بالخدمة</h2>
+    <div className="space-y-4 rounded-2xl border-2 border-accent/50 bg-card p-6 shadow-card md:p-8 animate-fade-up">
+      <h2 className="flex items-center gap-3 text-xl font-bold"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-sm text-accent-foreground">★</span>أسئلة خاصة بالخدمة</h2>
       {qs.map((q) => {
         const label = q.label + (q.required ? " *" : "");
         const err = errors[q.key];

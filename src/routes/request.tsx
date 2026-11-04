@@ -127,8 +127,8 @@ function RequestPage() {
       <PageHeader eyebrow="تقديم طلب" title="طلب مشروع جديد" description="هذا النموذج مخصص للمدارس والمجتمعات والمنظمات والمراكز الصحية. الحقول المعلّمة بـ * إلزامية، وسيراجع فريقنا طلبكم ويتواصل معكم." />
       <section className="container mx-auto max-w-3xl px-4 py-14">
         <form onSubmit={submit} noValidate className="space-y-8">
-          <div className="space-y-4 rounded-lg border bg-card p-6 shadow-card">
-            <h2 className="text-lg font-bold">بيانات الجهة</h2>
+          <div className="space-y-4 rounded-2xl border bg-card p-6 shadow-card md:p-8">
+            <h2 className="flex items-center gap-3 text-xl font-bold"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-gradient text-sm text-primary-foreground">1</span>بيانات الجهة</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label="اسم الجهة *" error={errors.org_name}><Input value={form.org_name} onChange={set("org_name")} />{err("org_name")}</Field>
               <Field label="اسم المسؤول *" error={errors.contact_name}><Input value={form.contact_name} onChange={set("contact_name")} />{err("contact_name")}</Field>
@@ -144,8 +144,8 @@ function RequestPage() {
             </div>
           </div>
 
-          <div className="space-y-4 rounded-lg border bg-card p-6 shadow-card">
-            <h2 className="text-lg font-bold">الموقع</h2>
+          <div className="space-y-4 rounded-2xl border bg-card p-6 shadow-card md:p-8">
+            <h2 className="flex items-center gap-3 text-xl font-bold"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-gradient text-sm text-primary-foreground">2</span>الموقع</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label="الولاية *" error={errors.state}>
                 <Select value={form.state} onValueChange={(v) => setForm((f) => ({ ...f, state: v }))} dir="rtl">
@@ -160,8 +160,8 @@ function RequestPage() {
             </div>
           </div>
 
-          <div className="space-y-4 rounded-lg border bg-card p-6 shadow-card">
-            <h2 className="text-lg font-bold">تفاصيل الاحتياج</h2>
+          <div className="space-y-4 rounded-2xl border bg-card p-6 shadow-card md:p-8">
+            <h2 className="flex items-center gap-3 text-xl font-bold"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-gradient text-sm text-primary-foreground">3</span>تفاصيل الاحتياج</h2>
             <Field label="نوع المشروع المطلوب *" error={errors.project_type}>
               <Select value={form.project_type} onValueChange={(v) => setForm((f) => ({ ...f, project_type: v }))} dir="rtl">
                 <SelectTrigger><SelectValue placeholder="اختر نوع المشروع" /></SelectTrigger>
@@ -183,8 +183,8 @@ function RequestPage() {
             errors={errors}
           />
 
-          <div className="space-y-5 rounded-lg border bg-card p-6 shadow-card">
-            <h2 className="text-lg font-bold">المرفقات</h2>
+          <div className="space-y-5 rounded-2xl border bg-card p-6 shadow-card md:p-8">
+            <h2 className="flex items-center gap-3 text-xl font-bold"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-gradient text-sm text-primary-foreground">4</span>المرفقات</h2>
             <Field label="صور الموقع *" error={errors.images}>{err("images")}
               <FileInput accept={IMAGE_TYPES.join(",")} files={images} onChange={setImages} maxMb={MAX_IMAGE_MB} label="أضف صوراً للموقع" />
             </Field>
@@ -198,7 +198,7 @@ function RequestPage() {
           </div>
 
           {errors.form && <p className="rounded-md bg-destructive/10 p-3 text-sm font-medium text-destructive">{errors.form}</p>}
-          <Button type="submit" size="lg" className="w-full text-base" disabled={busy}>
+          <Button type="submit" size="lg" className="h-14 w-full bg-brand-gradient text-lg shadow-glow" disabled={busy}>
             {busy && <Loader2 className="h-4 w-4 animate-spin" />} إرسال الطلب
           </Button>
         </form>
