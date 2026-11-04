@@ -25,11 +25,12 @@ export function StatusBadge({ status, label }: { status: string; label: string }
 
 export function PageHeader({ eyebrow, title, description, children }: { eyebrow?: string; title: string; description?: string; children?: ReactNode }) {
   return (
-    <section className="border-b bg-secondary blueprint">
-      <div className="container mx-auto max-w-6xl px-4 py-14 md:py-20">
+    <section className="relative overflow-hidden bg-ink-gradient text-ink-foreground">
+      <div className="pointer-events-none absolute inset-0 opacity-40 blueprint" />
+      <div className="container relative mx-auto max-w-6xl px-4 py-16 md:py-24 animate-fade-up">
         {eyebrow && <span className="eyebrow">{eyebrow}</span>}
         <h1 className="mt-3 text-3xl font-bold md:text-5xl">{title}</h1>
-        {description && <p className="mt-4 max-w-2xl text-lg leading-8 text-muted-foreground">{description}</p>}
+        {description && <p className="mt-4 max-w-2xl text-lg leading-8 text-ink-foreground/75">{description}</p>}
         {children}
       </div>
     </section>
@@ -40,7 +41,7 @@ export function SectionHeading({ eyebrow, title, description, className }: { eye
   return (
     <div className={cn("max-w-2xl", className)}>
       {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-      <h2 className="mt-3 text-2xl font-bold md:text-4xl">{title}</h2>
+      <h2 className="mt-3 text-3xl font-extrabold md:text-5xl">{title}</h2>
       {description && <p className="mt-3 leading-8 text-muted-foreground">{description}</p>}
     </div>
   );

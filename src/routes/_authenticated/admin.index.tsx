@@ -48,13 +48,16 @@ function Overview() {
 
   return (
     <div className="mx-auto max-w-6xl">
-      <h1 className="text-2xl font-bold">لوحة التحكم</h1>
-      <p className="mt-1 text-sm text-muted-foreground">نظرة عامة على نشاط المنصة.</p>
+      <div className="relative overflow-hidden rounded-3xl bg-ink-gradient p-8 text-ink-foreground shadow-glow">
+        <h1 className="text-3xl font-extrabold">لوحة التحكم</h1>
+        <p className="mt-2 text-ink-foreground/75">نظرة عامة على نشاط المنصة.</p>
+        {(d?.pending ?? 0) > 0 && <Link to="/admin/requests" className="mt-5 inline-flex rounded-full bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground">لديك {d?.pending} طلبات جديدة بانتظار المراجعة ←</Link>}
+      </div>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((c) => (
-          <Link key={c.l} to={c.to} className="rounded-lg border bg-card p-5 shadow-card transition-colors hover:border-primary">
+          <Link key={c.l} to={c.to} className="group rounded-2xl border bg-card p-5 shadow-card lift hover:border-primary">
             <div className="flex items-center justify-between">
-              <c.icon className="h-5 w-5 text-primary" />
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gradient text-primary-foreground"><c.icon className="h-5 w-5" /></span>
               <span className="font-display text-3xl font-bold">{c.v ?? 0}</span>
             </div>
             <p className="mt-2 text-sm text-muted-foreground">{c.l}</p>
@@ -63,7 +66,7 @@ function Overview() {
       </div>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
-        <section className="rounded-lg border bg-card p-5 shadow-card">
+        <section className="rounded-2xl border bg-card p-6 shadow-card">
           <div className="flex items-center justify-between">
             <h2 className="font-bold">أحدث طلبات المشاريع</h2>
             <Link to="/admin/requests" className="text-sm text-primary hover:underline">الكل</Link>
@@ -80,7 +83,7 @@ function Overview() {
             ))}
           </ul>
         </section>
-        <section className="rounded-lg border bg-card p-5 shadow-card">
+        <section className="rounded-2xl border bg-card p-6 shadow-card">
           <div className="flex items-center justify-between">
             <h2 className="font-bold">أحدث طلبات المتبرعين</h2>
             <Link to="/admin/donors" className="text-sm text-primary hover:underline">الكل</Link>

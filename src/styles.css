@@ -48,7 +48,7 @@
 }
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0.875rem;
   --background: oklch(0.982 0.008 85);
   --foreground: oklch(0.22 0.03 230);
   --card: oklch(1 0 0);
@@ -85,6 +85,9 @@
   --sidebar-border: oklch(0.3 0.03 230);
   --sidebar-ring: oklch(0.72 0.16 128);
   --shadow-card: 0 1px 2px oklch(0.2 0.03 230 / 6%), 0 8px 24px -12px oklch(0.2 0.03 230 / 18%);
+  --gradient-brand: linear-gradient(135deg, oklch(0.5 0.1 228) 0%, oklch(0.55 0.12 190) 55%, oklch(0.72 0.16 128) 100%);
+  --gradient-ink: radial-gradient(60% 80% at 85% 0%, oklch(0.5 0.1 228 / 45%) 0%, transparent 60%), radial-gradient(50% 70% at 0% 100%, oklch(0.72 0.16 128 / 25%) 0%, transparent 60%), oklch(0.2 0.035 230);
+  --shadow-glow: 0 20px 50px -20px oklch(0.5 0.1 228 / 45%);
   --gradient-hero: linear-gradient(270deg, oklch(0.2 0.035 230 / 92%) 0%, oklch(0.2 0.035 230 / 70%) 45%, oklch(0.2 0.035 230 / 15%) 100%);
 }
 
@@ -118,3 +121,18 @@
   gap: 0.5rem;
   &::before { content: ""; width: 1.5rem; height: 2px; background: var(--color-accent); }
 }
+
+@utility bg-brand-gradient { background-image: var(--gradient-brand); }
+@utility bg-ink-gradient { background: var(--gradient-ink); }
+@utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility text-gradient {
+  background-image: var(--gradient-brand);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+@utility lift {
+  transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s, border-color .3s;
+  &:hover { transform: translateY(-6px); box-shadow: var(--shadow-glow); }
+}
+@keyframes fade-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@utility animate-fade-up { animation: fade-up .7s cubic-bezier(.2,.7,.2,1) both; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
