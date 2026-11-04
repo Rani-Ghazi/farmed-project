@@ -68,6 +68,8 @@ function RequestPage() {
     const errs: Record<string, string> = {};
     if (!parsed.success) parsed.error.issues.forEach((i) => (errs[String(i.path[0])] = i.message));
     Object.assign(errs, validateAnswers(form.project_type, answers));
+    if (!images.length) errs.images = "يرجى إرفاق صورة واحدة على الأقل للموقع";
+    if (!video.length) errs.video = "يرجى إرفاق فيديو للموقع";
     if (!parsed.success || Object.keys(errs).length) {
       setErrors(errs);
       setTimeout(() => document.querySelector("[data-error]")?.scrollIntoView({ behavior: "smooth", block: "center" }), 0);
@@ -183,10 +185,10 @@ function RequestPage() {
 
           <div className="space-y-5 rounded-lg border bg-card p-6 shadow-card">
             <h2 className="text-lg font-bold">المرفقات</h2>
-            <Field label="صور الموقع (اختياري)">
+            <Field label="صور الموقع *" error={errors.images}>{err("images")}
               <FileInput accept={IMAGE_TYPES.join(",")} files={images} onChange={setImages} maxMb={MAX_IMAGE_MB} label="أضف صوراً للموقع" />
             </Field>
-            <Field label="فيديو (اختياري)">
+            <Field label="فيديو *" error={errors.video}>{err("video")}
               <FileInput accept={VIDEO_TYPES.join(",")} files={video} onChange={setVideo} maxMb={MAX_VIDEO_MB} multiple={false} label="أضف فيديو واحداً" />
             </Field>
             <Field label="مستندات داعمة (اختياري)">
