@@ -57,8 +57,8 @@ export const SUDAN_STATES = [
   "جنوب دارفور", "شرق دارفور", "غرب دارفور", "وسط دارفور",
 ];
 
-export const formatMoney = (v?: number | null, currency = "USD") =>
-  v == null ? "—" : `${new Intl.NumberFormat("ar-SD").format(Number(v))} ${currency === "USD" ? "دولار" : currency}`;
+export const formatMoney = (v?: number | null, _currency = "SDG") =>
+  v == null ? "—" : `${new Intl.NumberFormat("ar-SD").format(Number(v))} جنيه سوداني`;
 export const formatNumber = (v?: number | null) => (v == null ? "—" : new Intl.NumberFormat("ar-SD").format(v));
 export const formatDate = (v?: string | null) =>
   v ? new Intl.DateTimeFormat("ar-SD", { dateStyle: "medium" }).format(new Date(v)) : "—";

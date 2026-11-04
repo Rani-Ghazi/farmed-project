@@ -84,7 +84,7 @@ export function SupportDialog({ projectId, projectTitle }: { projectId: string; 
                 <Field label="رقم الهاتف *" error={errors.phone}><Input dir="ltr" inputMode="tel" value={form.phone} onChange={set("phone")} /></Field>
                 <Field label="البريد الإلكتروني (اختياري)" error={errors.email}><Input dir="ltr" type="email" value={form.email} onChange={set("email")} /></Field>
               </div>
-              <Field label="المبلغ الذي تنوي المساهمة به بالدولار (اختياري)" error={errors.intended_amount}>
+              <Field label="المبلغ الذي تنوي المساهمة به بالجنيه السوداني (اختياري)" error={errors.intended_amount}>
                 <Input type="number" min={0} dir="ltr" value={form.intended_amount} onChange={set("intended_amount")} />
               </Field>
               <Field label="طريقة التواصل المفضلة">
