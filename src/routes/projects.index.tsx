@@ -25,9 +25,9 @@ export const Route = createFileRoute("/projects/")({
 
 const COST_RANGES = [
   { v: "all", l: "كل التكاليف", min: 0, max: Infinity },
-  { v: "lt5", l: "أقل من 5,000 $", min: 0, max: 5000 },
-  { v: "5to20", l: "5,000 – 20,000 $", min: 5000, max: 20000 },
-  { v: "gt20", l: "أكثر من 20,000 $", min: 20000, max: Infinity },
+  { v: "lt5", l: "أقل من 5 مليون جنيه", min: 0, max: 5_000_000 },
+  { v: "5to20", l: "5 – 20 مليون جنيه", min: 5_000_000, max: 20_000_000 },
+  { v: "gt20", l: "أكثر من 20 مليون جنيه", min: 20_000_000, max: Infinity },
 ];
 
 function Projects() {
