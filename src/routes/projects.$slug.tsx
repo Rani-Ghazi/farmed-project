@@ -54,16 +54,16 @@ function ProjectDetail() {
   return (
     <SiteLayout>
       <section className="container mx-auto max-w-6xl px-4 py-8 md:py-12">
-        <nav className="mb-4 text-sm text-muted-foreground"><Link to="/projects" className="hover:text-primary">المشاريع</Link> / {p.title}</nav>
+        <nav className="mb-4 break-words text-sm text-muted-foreground"><Link to="/projects" className="hover:text-primary">المشاريع</Link> / {p.title}</nav>
         <div className="flex flex-wrap items-center gap-3">
           <span className="rounded bg-primary-soft px-2 py-1 text-xs font-semibold text-primary">{projectTypeLabel(p.project_type)}</span>
           <StatusBadge status={p.status} label={requestStatusLabel(p.status)} />
         </div>
-        <h1 className="mt-3 text-3xl font-bold md:text-4xl">{p.title}</h1>
+        <h1 className="mt-3 break-words text-2xl font-bold sm:text-3xl md:text-4xl">{p.title}</h1>
         {loc && <p className="mt-2 flex items-center gap-2 text-muted-foreground"><MapPin className="h-4 w-4" /> {loc}</p>}
 
         <div className="mt-8 grid gap-8 lg:grid-cols-3">
-          <div className="lg:col-span-2">
+          <div className="min-w-0 lg:col-span-2">
             <MediaImage path={main} alt={p.title} className="aspect-video w-full rounded-lg" />
             {images.length > 1 && (
               <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
@@ -93,7 +93,7 @@ function ProjectDetail() {
               )}
             </div>
           </div>
-          <aside className="lg:sticky lg:top-20 lg:self-start">
+          <aside className="min-w-0 lg:sticky lg:top-20 lg:self-start">
             <div className="rounded-lg border bg-card p-6 shadow-card">
               <p className="text-sm text-muted-foreground">التكلفة التقديرية</p>
               <p className="mt-1 font-display text-3xl font-bold text-primary">{formatMoney(p.estimated_cost, p.currency)}</p>
