@@ -48,9 +48,9 @@ function PortfolioDetail() {
   return (
     <SiteLayout>
       <section className="container mx-auto max-w-6xl px-4 py-8 md:py-12">
-        <nav className="mb-4 text-sm text-muted-foreground"><Link to="/portfolio" className="hover:text-primary">معرض الأعمال</Link> / {i.title}</nav>
+        <nav className="mb-4 break-words text-sm text-muted-foreground"><Link to="/portfolio" className="hover:text-primary">معرض الأعمال</Link> / {i.title}</nav>
         <span className="rounded bg-success/10 px-2 py-1 text-xs font-semibold text-success">مشروع مكتمل</span>
-        <h1 className="mt-3 text-3xl font-bold md:text-4xl">{i.title}</h1>
+        <h1 className="mt-3 break-words text-2xl font-bold sm:text-3xl md:text-4xl">{i.title}</h1>
         <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
           <span>{projectTypeLabel(i.project_type)}</span>
           {i.location && <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4" />{i.location}</span>}
@@ -58,11 +58,11 @@ function PortfolioDetail() {
         </div>
         {i.cover_image && <MediaImage path={i.cover_image} alt={i.title} className="mt-8 aspect-video w-full rounded-lg" />}
         <div className="mt-10 grid gap-10 lg:grid-cols-3">
-          <div className="lg:col-span-2 space-y-10">
+          <div className="min-w-0 space-y-10 lg:col-span-2">
             {i.description && (
               <div>
                 <h2 className="text-xl font-bold">عن المشروع</h2>
-                <p className="mt-3 whitespace-pre-line leading-8 text-muted-foreground">{i.description}</p>
+                <p className="mt-3 whitespace-pre-line break-words leading-8 text-muted-foreground">{i.description}</p>
               </div>
             )}
             {(before.length > 0 || after.length > 0) && (
@@ -78,7 +78,7 @@ function PortfolioDetail() {
               </div>
             )}
           </div>
-          <aside className="lg:self-start">
+          <aside className="min-w-0 lg:self-start">
             <div className="rounded-lg border bg-card p-6 shadow-card">
               <dl className="space-y-3 text-sm">
                 <div className="flex justify-between"><dt className="text-muted-foreground">المستفيدون</dt><dd className="font-semibold">{formatNumber(i.beneficiaries)}</dd></div>
