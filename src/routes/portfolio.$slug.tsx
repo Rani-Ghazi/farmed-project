@@ -62,7 +62,7 @@ function PortfolioDetail() {
             {i.description && (
               <div>
                 <h2 className="text-xl font-bold">عن المشروع</h2>
-                <p className="mt-3 whitespace-pre-line leading-8 text-muted-foreground">{i.description}</p>
+                <p className="mt-3 whitespace-pre-line break-words leading-8 text-muted-foreground">{i.description}</p>
               </div>
             )}
             {(before.length > 0 || after.length > 0) && (

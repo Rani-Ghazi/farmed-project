@@ -77,12 +77,12 @@ function ProjectDetail() {
             <div className="mt-10 space-y-8">
               <div>
                 <h2 className="text-xl font-bold">وصف المشروع</h2>
-                <p className="mt-3 whitespace-pre-line leading-8 text-muted-foreground">{p.description || p.short_description || "—"}</p>
+                <p className="mt-3 whitespace-pre-line break-words leading-8 text-muted-foreground">{p.description || p.short_description || "—"}</p>
               </div>
               {p.need_reason && (
                 <div className="rounded-lg border-r-4 border-accent bg-sand/50 p-5">
                   <h2 className="text-xl font-bold">لماذا يحتاج المجتمع هذا المشروع؟</h2>
-                  <p className="mt-3 whitespace-pre-line leading-8">{p.need_reason}</p>
+                  <p className="mt-3 whitespace-pre-line break-words leading-8">{p.need_reason}</p>
                 </div>
               )}
               {videos.length > 0 && (
