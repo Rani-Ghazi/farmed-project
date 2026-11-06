@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Menu, MessageCircle, Phone, Twitter, X, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { settingsQuery } from "@/lib/queries";
-import logoAsset from "@/assets/farmed-logo.png.asset.json";
+const logoAsset = { url: "/farmed-logo.png" };
 
 const NAV = [
   { to: "/", label: "الرئيسية" },
