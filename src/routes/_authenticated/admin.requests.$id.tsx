@@ -15,7 +15,18 @@ import { formatDate, formatNumber, projectTypeLabel, REQUEST_STATUSES, requestSt
 import type { RequestStatus } from "@/lib/constants";
 import { formatAnswer, SERVICE_QUESTIONS, type Answers } from "@/lib/service-questions";
 
-export const Route = createFileRoute("/_authenticated/admin/requests/$id")({ component: RequestDetail });
+export const Route = createFileRoute("/_authenticated/admin/requests/$id")({
+  head: () => ({ meta: [
+    { title: "تفاصيل طلب المشروع — فارمد الهندسية" },
+    { name: "description", content: "مراجعة تفاصيل طلب المشروع ومرفقاته وإدارة حالته في فارمد الهندسية." },
+    { property: "og:title", content: "تفاصيل طلب المشروع — فارمد الهندسية" },
+    { property: "og:description", content: "مراجعة بيانات طلب المشروع وإجابات الخدمة والمرفقات." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+    { name: "robots", content: "noindex" },
+  ] }),
+  component: RequestDetail,
+});
 
 function RequestDetail() {
   const { id } = Route.useParams();
@@ -82,19 +93,24 @@ function RequestDetail() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl">
+    <div className="mx-auto w-full min-w-0 max-w-5xl">
       <Button asChild variant="ghost" size="sm"><Link to="/admin/requests"><ArrowRight className="h-4 w-4" /> كل الطلبات</Link></Button>
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-bold">{r.org_name}</h1>
-          <p className="mt-1 text-sm text-muted-foreground">{r.contact_name} · <span dir="ltr">{r.phone}</span>{r.email ? ` · ${r.email}` : ""} · {formatDate(r.created_at)}</p>
+      <div className="mt-4 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 sm:flex sm:items-center sm:justify-between">
+        <div className="min-w-0 flex-1">
+          <h1 className="break-words text-xl font-bold sm:text-2xl">{r.org_name}</h1>
+          <div className="mt-2 grid min-w-0 gap-1 text-sm text-muted-foreground">
+            <p className="break-words">{r.contact_name}</p>
+            <p className="break-words"><bdi dir="ltr">{r.phone}</bdi></p>
+            {r.email && <p className="break-words"><bdi dir="ltr">{r.email}</bdi></p>}
+            <p>{formatDate(r.created_at)}</p>
+          </div>
         </div>
-        <StatusBadge status={r.status} label={requestStatusLabel(r.status)} />
+        <div className="shrink-0"><StatusBadge status={r.status} label={requestStatusLabel(r.status)} /></div>
       </div>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-3">
-        <div className="space-y-6 lg:col-span-2">
-          <section className="rounded-lg border bg-card p-6 shadow-card">
+      <div className="mt-6 grid min-w-0 gap-4 sm:mt-8 sm:gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+        <div className="min-w-0 space-y-4 sm:space-y-6">
+          <section className="min-w-0 rounded-lg border bg-card p-4 shadow-card sm:p-6">
             <h2 className="font-bold">تفاصيل الطلب</h2>
             <dl className="mt-4 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
               <Item k="نوع الجهة" v={r.org_type} />
@@ -104,14 +120,14 @@ function RequestDetail() {
               <Item k="المستفيدون المتوقعون" v={formatNumber(r.expected_beneficiaries)} />
             </dl>
             <h3 className="mt-6 font-semibold">وصف الاحتياج</h3>
-            <p className="mt-2 whitespace-pre-line text-sm leading-7 text-muted-foreground">{r.need_description}</p>
+            <p className="mt-2 whitespace-pre-line break-words text-sm leading-7 text-muted-foreground">{r.need_description}</p>
             <h3 className="mt-6 font-semibold">سبب الحاجة</h3>
-            <p className="mt-2 whitespace-pre-line text-sm leading-7 text-muted-foreground">{r.need_reason}</p>
-            {r.extra_notes && <><h3 className="mt-6 font-semibold">ملاحظات إضافية</h3><p className="mt-2 whitespace-pre-line text-sm leading-7 text-muted-foreground">{r.extra_notes}</p></>}
+            <p className="mt-2 whitespace-pre-line break-words text-sm leading-7 text-muted-foreground">{r.need_reason}</p>
+            {r.extra_notes && <><h3 className="mt-6 font-semibold">ملاحظات إضافية</h3><p className="mt-2 whitespace-pre-line break-words text-sm leading-7 text-muted-foreground">{r.extra_notes}</p></>}
           </section>
 
           {(SERVICE_QUESTIONS[r.project_type]?.length ?? 0) > 0 && (
-            <section className="rounded-lg border bg-card p-6 shadow-card">
+            <section className="min-w-0 rounded-lg border bg-card p-4 shadow-card sm:p-6">
               <h2 className="font-bold">إجابات خاصة بخدمة: {projectTypeLabel(r.project_type)}</h2>
               <dl className="mt-4 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
                 {SERVICE_QUESTIONS[r.project_type].filter((q) => q.type !== "images").map((q) => (
@@ -124,7 +140,7 @@ function RequestDetail() {
                   <div key={q.key} className="mt-5">
                     <h3 className="text-sm font-semibold">{q.label}</h3>
                     <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                      {imgs.map((p) => <MediaImage key={p} path={p} bucket="request-attachments" alt={q.label} className="aspect-[4/3] w-full rounded-md" />)}
+                      {imgs.map((p) => <MediaImage key={p} path={p} bucket="request-attachments" alt={q.label} className="aspect-[4/3] w-full min-w-0 max-w-full rounded-md" />)}
                     </div>
                   </div>
                 ) : null;
@@ -134,14 +150,14 @@ function RequestDetail() {
 
 
           {(r.site_images.length > 0 || r.video_path || r.documents.length > 0) && (
-            <section className="rounded-lg border bg-card p-6 shadow-card">
+            <section className="min-w-0 rounded-lg border bg-card p-4 shadow-card sm:p-6">
               <h2 className="font-bold">المرفقات</h2>
               {r.site_images.length > 0 && (
                 <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  {r.site_images.map((p) => <MediaImage key={p} path={p} bucket="request-attachments" alt="صورة الموقع" className="aspect-[4/3] w-full rounded-md" />)}
+                  {r.site_images.map((p) => <MediaImage key={p} path={p} bucket="request-attachments" alt="صورة الموقع" className="aspect-[4/3] w-full min-w-0 max-w-full rounded-md" />)}
                 </div>
               )}
-              {r.video_path && <div className="mt-4"><MediaVideo path={r.video_path} bucket="request-attachments" className="aspect-video w-full rounded-md" /></div>}
+              {r.video_path && <div className="mt-4 min-w-0"><MediaVideo path={r.video_path} bucket="request-attachments" className="aspect-video w-full min-w-0 max-w-full rounded-md" /></div>}
               {r.documents.length > 0 && (
                 <ul className="mt-4 space-y-2 text-sm">
                   {r.documents.map((p, i) => <li key={p}><MediaLink path={p} label={`مستند ${i + 1}`} /></li>)}
@@ -151,8 +167,8 @@ function RequestDetail() {
           )}
         </div>
 
-        <aside className="space-y-4 lg:self-start">
-          <section className="rounded-lg border bg-card p-5 shadow-card">
+        <aside className="min-w-0 space-y-4 lg:self-start">
+          <section className="min-w-0 rounded-lg border bg-card p-4 shadow-card sm:p-5">
             <h2 className="font-bold">إجراءات</h2>
             <div className="mt-4 flex gap-2">
               <Button className="flex-1" disabled={busy || r.status === "approved"} onClick={() => save({ status: "approved" }, "تم قبول الطلب")}><Check className="h-4 w-4" /> قبول</Button>
@@ -161,7 +177,7 @@ function RequestDetail() {
             <div className="mt-4 space-y-1.5">
               <Label>تغيير الحالة</Label>
               <Select value={status} onValueChange={(v) => setStatus(v as RequestStatus)} dir="rtl">
-                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectTrigger className="w-full min-w-0"><SelectValue /></SelectTrigger>
                 <SelectContent>{REQUEST_STATUSES.map((s) => <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>)}</SelectContent>
               </Select>
               <Button variant="outline" className="w-full" disabled={busy || status === r.status} onClick={() => save({ status }, "تم تحديث الحالة")}>حفظ الحالة</Button>
@@ -175,7 +191,7 @@ function RequestDetail() {
               </AlertDialogContent>
             </AlertDialog>
           </section>
-          <section className="rounded-lg border bg-card p-5 shadow-card">
+          <section className="min-w-0 rounded-lg border bg-card p-4 shadow-card sm:p-5">
             <Label>ملاحظات داخلية</Label>
             <Textarea className="mt-2" rows={5} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="ملاحظات لا تظهر للجمهور..." />
             <Button variant="outline" className="mt-3 w-full" disabled={busy} onClick={() => save({ admin_notes: notes }, "تم حفظ الملاحظات")}>حفظ الملاحظات</Button>
@@ -187,5 +203,5 @@ function RequestDetail() {
 }
 
 function Item({ k, v }: { k: string; v: string }) {
-  return <div><dt className="text-muted-foreground">{k}</dt><dd className="mt-0.5 font-semibold">{v}</dd></div>;
+  return <div className="min-w-0"><dt className="break-words text-muted-foreground">{k}</dt><dd className="mt-0.5 whitespace-pre-line break-words font-semibold">{v}</dd></div>;
 }
