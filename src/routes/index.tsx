@@ -46,7 +46,7 @@ function Home() {
     <SiteLayout>
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-ink">
-        <img src={heroImg} alt="نظام طاقة شمسية يشغّل بئر مياه في قرية سودانية" width={1920} height={1088} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={heroImg} alt="نظام طاقة شمسية يشغّل بئر مياه في قرية سودانية" width={1600} height={906} fetchPriority="high" decoding="async" className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-hero-overlay" />
         <div className="container mx-auto max-w-6xl px-4 py-28 md:py-44">
           <div className="max-w-2xl text-ink-foreground animate-fade-up">
