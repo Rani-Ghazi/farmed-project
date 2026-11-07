@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ClipboardList, Hammer, HeartHandshake, SearchCheck, Camera } from "lucide-react";
 import { serviceIcon } from "@/lib/icons";
-import heroImg from "@/assets/hero.jpg";
-import aboutImg from "@/assets/about.jpg";
+import heroImg from "@/assets/hero.webp";
+import aboutImg from "@/assets/about.webp";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { EmptyState, ErrorState, LoadingState, SectionHeading } from "@/components/site/common";
@@ -20,6 +20,9 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "فارمد الهندسية تنفّذ مشاريع المبردات الحرارية وحفر الآبار والطاقة الشمسية، وتربط المجتمعات المحتاجة بالداعمين." },
       { property: "og:title", content: "فارمد الهندسية — مشاريع المياه والطاقة في السودان" },
       { property: "og:description", content: "اطلب مشروعاً لمجتمعك أو ادعم مشروعاً قائماً مع فارمد الهندسية." },
+    ],
+    links: [
+      { rel: "preload", as: "image", href: heroImg, fetchpriority: "high" },
     ],
   }),
   component: Home,
