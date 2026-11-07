@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ClipboardList, Hammer, HeartHandshake, SearchCheck, Camera } from "lucide-react";
 import { serviceIcon } from "@/lib/icons";
-import heroImg from "@/assets/hero.jpg";
-import aboutImg from "@/assets/about.jpg";
+import heroImg from "@/assets/hero.webp";
+import aboutImg from "@/assets/about.webp";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { EmptyState, ErrorState, LoadingState, SectionHeading } from "@/components/site/common";
@@ -20,6 +20,9 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "فارمد الهندسية تنفّذ مشاريع المبردات الحرارية وحفر الآبار والطاقة الشمسية، وتربط المجتمعات المحتاجة بالداعمين." },
       { property: "og:title", content: "فارمد الهندسية — مشاريع المياه والطاقة في السودان" },
       { property: "og:description", content: "اطلب مشروعاً لمجتمعك أو ادعم مشروعاً قائماً مع فارمد الهندسية." },
+    ],
+    links: [
+      { rel: "preload", as: "image", href: heroImg, fetchpriority: "high" },
     ],
   }),
   component: Home,
@@ -43,7 +46,7 @@ function Home() {
     <SiteLayout>
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-ink">
-        <img src={heroImg} alt="نظام طاقة شمسية يشغّل بئر مياه في قرية سودانية" width={1920} height={1088} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={heroImg} alt="نظام طاقة شمسية يشغّل بئر مياه في قرية سودانية" width={1600} height={906} fetchPriority="high" decoding="async" className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-hero-overlay" />
         <div className="container mx-auto max-w-6xl px-4 py-28 md:py-44">
           <div className="max-w-2xl text-ink-foreground animate-fade-up">
